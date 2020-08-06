@@ -1,0 +1,34 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.synectiks.library"
+    },
+    "jhipsterVersion": "5.8.2",
+    "applicationType": "microservice",
+    "baseName": "Library",
+    "packageName": "com.synectiks.library",
+    "packageFolder": "com/synectiks/library",
+    "serverPort": "9097",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "M2E0OTRiYjNkYzQ4YTcyMzQ3NWYyNzdhNmJhMDExNGRiMjdhYTIxZTk5YzI5Yjg1ODI5NzY5MzRhNGFlMWY5MGE5NTM3ZTcyODAwYzhjZmI0MjQzN2MzYjM2NWM4NjYwZmYyMGVhZDc2Y2U5Y2U1ZDE0MjEzMDJmMmUzOTJiMGY=",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
