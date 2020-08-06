@@ -1,0 +1,52 @@
+{
+    "name": "Book",
+    "fields": [
+        {
+            "fieldName": "shelfNo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "bookTitle",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "author",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "publisher",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "edition",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "noOfCopies",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "isbNo",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "departmentId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "branchId",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200806112615",
+    "entityTableName": "book",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "Library",
+    "applications": "*",
+    "microserviceName": "Library"
+}

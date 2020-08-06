@@ -1,0 +1,33 @@
+
+entity IssueBook{
+   issueDate LocalDate
+   dueDate LocalDate
+   receivedDate LocalDate
+   noOfCopiesAvailable Integer
+   bookStatus String
+   studentId Long
+   batchId Long
+   departmentId Long
+   branchId Long
+}
+
+entity Book{
+    shelfNo String
+    bookTitle String
+    author String
+    publisher String
+    edition String
+    noOfCopies Long
+    isbNo Long
+    departmentId Long
+    branchId Long
+}
+
+relationship ManyToOne {
+   IssueBook{book} to Book
+}
+
+dto * with mapstruct
+service all with serviceImpl
+
+

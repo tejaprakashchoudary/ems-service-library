@@ -1,0 +1,60 @@
+{
+    "name": "IssueBook",
+    "fields": [
+        {
+            "fieldName": "issueDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "dueDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "receivedDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "noOfCopiesAvailable",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "bookStatus",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "studentId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "batchId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "departmentId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "branchId",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "book",
+            "otherEntityRelationshipName": "issueBook",
+            "relationshipName": "book",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200806112614",
+    "entityTableName": "issue_book",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "Library",
+    "applications": "*",
+    "microserviceName": "Library"
+}
