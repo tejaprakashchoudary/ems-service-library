@@ -1,0 +1,347 @@
+scalar Date
+
+type Query {
+    getBookList: [CmsBookVo]
+    getIssueBookList: [CmsIssueBookVo]
+    searchBook(bookTitle:String, departmentId:Long,bookId:Long): [CmsBookVo]
+    searchIssueBook(bookId:Long, studentId:Long, departmentId:Long, batchId:Long): [CmsIssueBookVo]
+    createLibraryDataCache: LibraryFilterDataCache
+}
+ type Mutation {
+  addBook(input: AddBookInput): AddBookPayload
+  addIssueBook(input: AddIssueBookInput): AddIssueBookPayload
+  getBookList(filter: BookFilterInput):[CmsBookVo]
+  getIssueBookList(filter: IssueBookListFilterInput):[CmsIssueBookVo]
+ }
+type LibraryFilterDataCache{
+   departments: [Department]
+   batches: [Batch]
+   issueBooks: [CmsIssueBookVo]
+   books: [CmsBookVo]
+   students: [Student]
+}
+type IssueBook {
+         id:Long
+         issueDate: Date
+         dueDate: Date
+         noOfCopiesAvailable: Int
+         bookStatus: String
+         receivedDate: Date
+         batchId: Long
+         departmentId: Long
+     	 studentId: Long
+     	 bookId: Long
+ }
+
+type  Book{
+     id:Long
+    shelfNo: String
+    bookTitle: String
+    author: String
+    publisher: String
+    edition: String
+    noOfCopies: Long
+    isbNo: Long
+    departmentId: Long
+
+}
+type CmsIssueBookVo{
+     id: Long
+    issueDate: Date
+    dueDate: Date
+    noOfCopiesAvailable: Int
+    bookStatus: String
+    receivedDate: Date
+    strIssueDate: String
+    strDueDate: String
+    strReceivedDate: String
+    batchId: Long
+    departmentId: Long
+    bookId: Long
+    studentId: Long
+    department: Department
+    batch: Batch
+    student: Student
+    book: Book
+    exitCode: Long
+    exitDescription: String
+    dataList: [CmsIssueBookVo]
+}
+
+type CmsBookVo {
+     id: Long
+     shelfNo: String
+     bookTitle: String
+     author: String
+     publisher: String
+     edition: String
+     noOfCopies: Long
+     isbNo: Long
+     departmentId: Long
+     department: Department
+     exitCode: Long
+     exitDescription: String
+     dataList: [CmsBookVo]
+}
+
+input BookFilterInput {
+    bookId: String
+    departmentId: String
+}
+input AddBookInput{
+     id: Long
+    shelfNo: String
+    bookTitle: String
+    author: String
+    publisher: String
+    edition: String
+    noOfCopies: Long
+    isbNo: Long
+    departmentId: Long
+}
+
+type AddBookPayload {
+    cmsBookVo:CmsBookVo
+}
+
+
+input IssueBookListFilterInput {
+   studentId:String
+   issueBookId:String
+   departmentId: String
+   batchId: String
+}
+
+input AddIssueBookInput{
+     id: Long
+    noOfCopiesAvailable: Int
+    bookStatus: String
+    strIssueDate: String
+    strDueDate: String
+    strReceivedDate: String
+    batchId: Long
+    departmentId: Long
+    bookId: Long
+    studentId: Long
+}
+type AddIssueBookPayload{
+    cmsIssueBookVo:CmsIssueBookVo
+}
+type Student {
+	id:										Long
+	studentName:				        	String
+	studentMiddleName:                  	String
+	studentLastName:                    	String
+	fatherName:                         	String
+	fatherMiddleName:                   	String
+	fatherLastName:                     	String
+	motherName:                         	String
+	motherMiddleName:                   	String
+	motherLastName:                     	String
+	studentAadharNo:                    	String
+	studentPanNo:                       	String
+	studentSocialSecurityNo:            	String
+	studentTaxReferenceNo:              	String
+	studentBplNo:                       	String
+	studentDrivingLicenseNo:            	String
+	studentPassportNo:                  	String
+	dateOfBirth:				        	Date
+	placeOfBirth:				        	String
+	religion:                           	String
+	caste:                              	String
+	subCaste:                           	String
+	age:						        	Int
+	sex:									String
+	studentLocalAddress:                    String
+	studentPermanentAddress:                String
+	city:                                   String
+	state:                                  String
+	country:                                String
+	pinCode:                                String
+	studentPrimaryCellNumber:               String
+	studentAlternateCellNumber:             String
+	studentLandLinePhoneNumber:             String
+	studentPrimaryEmailId:                  String
+	studentAlternateEmailId:                String
+	relationWithStudent:                    String
+	emergencyContactName:                   String
+	emergencyContactMiddleName:             String
+	emergencyContactLastName:               String
+	emergencyContactCellNumber:             String
+	emergencyContactLandLinePhoneNumber:    String
+	emergencyContactEmailId:                String
+	studentImagePath:                       String
+	admissionNo:                            String
+	enrollmentNo:                           String
+	rollNo:                                 String
+	studentType:                            String
+	fatherCellNumber:						String
+	fatherEmailId:                          String
+	fatherOccupation:                       String
+	fatherOfficeEmailId:                    String
+	fatherOfficeAddress:                    String
+	fatherOfficeCellNumber:                 String
+	fatherOfficeLandLinePhoneNumber:        String
+	fatherAadharNo:                         String
+	fatherPanNo:                            String
+	fatherSocialSecurityNo:                 String
+	fatherTaxReferenceNo:                   String
+	fatherBplNo:                            String
+	fatherDrivingLicenseNo:                 String
+	fatherPassportNo:                       String
+	fatherImagePath:                        String
+	motherCellNumber:                       String
+	motherEmailId:                          String
+	motherOccupation:                       String
+	motherOfficeEmailId:                    String
+	motherOfficeAddress:                    String
+	motherOfficeCellNumber:                 String
+	motherOfficeLandLinePhoneNumber:        String
+	motherAadharNo:							String
+	motherPanNo:                            String
+	motherSocialSecurityNo:                 String
+	motherTaxReferenceNo:                   String
+	motherBplNo:                            String
+	motherDrivingLicenseNo:                 String
+	motherPassportNo:                       String
+	motherImagePath:                        String
+	guardianName:                           String
+	guardianMiddleName:                     String
+	guardianLastName:                       String
+	guardianAddress:                        String
+	guardianCellNumber:                     String
+	guardianLandLinePhoneNumber:            String
+	guardianEmailId:                        String
+	guardianOccupation:                     String
+	guardianOfficeEmailId:                  String
+	guardianOfficeAddress:                  String
+	guardianOfficeCellNumber:               String
+	guardianOfficeLandLinePhoneNumber:      String
+	guardianImagePath:                      String
+	isGuardianSponsorAgency:                String
+	sponsorAgencyName:                      String
+	sponsorAgencyRegistrationNo:            String
+	sponsorAgencyAddress:                   String
+	sponsorAgencyCellNumber:                String
+	sponsorAgencyLandLineNumber:            String
+	sponsorAgencyEmailId:                   String
+	sponsorAgencyAppointeeName:				String
+	sponsorAgencyAppointeeDesignation:      String
+	sponsorAgencyAppointeeCellNumber:       String
+	sponsorAgencyAppointeeLandLineNumber:   String
+	sponsorAgencyAppointeeEmailId:          String
+	sponsorAgencyAppointeeOfficeAddress:    String
+	isPhysicallyChallenged:                 String
+	detailsOfDisability:                    String
+	disabilityCertificateNo:                String
+	disabilityCertificateIssueAuthority:    String
+	disabilityCertificateIssueDate:			Date
+	percentagOfDisability:					Int
+	bloodGroup:								String
+	vaccinationDetails:                     String
+	otherMedicalDetails:                    String
+	status:                                 String
+	createdBy:                              String
+	createdOn:								Date
+	updatedBy:								String
+	updatedOn:								Date
+	comments:								String
+	departmentId:							Long
+	branchId:                               Long
+	sectionId:                              Long
+	batchId:                                Long
+	academicYearId:                         Long
+	}
+
+type AcademicYear {
+	id:				Long
+	description: 	String
+	startDate:		Date
+	endDate:        Date
+	comments:		String
+	createdBy:      String
+	createdOn:		Date
+	updatedBy:      String
+	updatedOn:      Date
+	status:         String
+}
+
+type Batch {
+	id:			Long
+	batch: 		String
+	department:	Department
+}
+
+type Department {
+	id:				Long
+	name:           String
+	description:    String
+	deptHead:       String
+	comments:       String
+	createdBy:      String
+	createdOn:      Date
+	updatedBy:      String
+	updatedOn:      Date
+	status:         String
+	branch:         Branch
+	academicYear: 	AcademicYear
+}
+
+type Branch {
+	id:					Long
+	branchName:         String
+	address:            String
+	pinCode:            String
+	branchHead:         String
+	cellPhoneNo:        String
+	landLinePhoneNo:    String
+	emailId:            String
+	faxNo:              String
+	isMainBranch:       String
+	startDate:			Date
+	createdBy:          String
+	createdOn:          Date
+	updatedBy:          String
+	updatedOn:          Date
+	status:             String
+	college:            College
+	city:               City
+	state:              State
+}
+
+type State {
+	id:				Long
+	stateName:      String
+	divisionType:   String
+	stateCode:      String
+	country:        Country
+}
+
+type City {
+	id:			Long
+	cityName:   String
+	cityCode:   String
+	stdCode:    String
+	state:      State
+}
+
+type College {
+	id:					Long
+	collegeName:        String
+	logoFilePath:       String
+	logoFileName:       String
+	logoFileExtension:  String
+	createdBy:          String
+	createdOn:          Date
+	updatedBy:          String
+	updatedOn:          Date
+	status:             String
+	country:            Country
+}
+
+type Country {
+	id:				Long
+	countryName:    String
+	countryCode:    String
+	isdCode:        String
+}

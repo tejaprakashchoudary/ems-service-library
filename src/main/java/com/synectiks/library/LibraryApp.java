@@ -1,8 +1,8 @@
 package com.synectiks.library;
 
 import com.synectiks.library.config.ApplicationProperties;
-import com.synectiks.library.config.DefaultProfileUtil;
 
+import com.synectiks.library.config.DefaultProfileUtil;
 import io.github.jhipster.config.JHipsterConstants;
 
 import org.apache.commons.lang3.StringUtils;
@@ -12,6 +12,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
 
 import javax.annotation.PostConstruct;
@@ -26,14 +27,18 @@ public class LibraryApp {
 
     private static final Logger log = LoggerFactory.getLogger(LibraryApp.class);
 
+    private static ConfigurableApplicationContext ctx = null;
+
     private final Environment env;
+
+    private static String serverIp;
 
     public LibraryApp(Environment env) {
         this.env = env;
     }
 
     /**
-     * Initializes Library.
+     * Initializes library.
      * <p>
      * Spring profiles can be configured with a program argument --spring.profiles.active=your-active-profile
      * <p>
@@ -55,7 +60,7 @@ public class LibraryApp {
     /**
      * Main method, used to run the application.
      *
-     * @param args the command line arguments
+     * @param args the command line arguments.
      */
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(LibraryApp.class);
@@ -94,5 +99,21 @@ public class LibraryApp {
             serverPort,
             contextPath,
             env.getActiveProfiles());
+    }
+
+    public static <T> T getBean(Class<T> cls) {
+        return ctx.getBean(cls);
+    }
+
+    public static Environment getEnvironment() {
+        return ctx.getEnvironment();
+    }
+
+    public static int getServerPort() {
+        return Integer.parseInt(ctx.getEnvironment().getProperty("server.port"));
+    }
+
+    public static String getServer() {
+        return serverIp;
     }
 }
