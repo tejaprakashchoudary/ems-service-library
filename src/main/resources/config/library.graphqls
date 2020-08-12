@@ -55,6 +55,7 @@ type CmsIssueBookVo{
     strIssueDate: String
     strDueDate: String
     strReceivedDate: String
+    branchId: Long
     batchId: Long
     departmentId: Long
     bookId: Long
@@ -121,6 +122,7 @@ input AddIssueBookInput{
     strReceivedDate: String
     batchId: Long
     departmentId: Long
+    branchId: Long
     bookId: Long
     studentId: Long
 }
