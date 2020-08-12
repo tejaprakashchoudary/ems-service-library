@@ -1,5 +1,6 @@
 package com.synectiks.library.business.service;
 
+import com.synectiks.library.config.ApplicationProperties;
 import com.synectiks.library.constant.CmsConstants;
 import com.synectiks.library.domain.*;
 import com.synectiks.library.domain.vo.CmsBookVo;
@@ -27,12 +28,15 @@ import java.util.Optional;
 @Component
 public class IssueBookService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     IssueBookRepository issueBookRepository;
     @Autowired
     BookRepository bookRepository;
     @Autowired
     CommonService commonService;
+    @Autowired
+    private ApplicationProperties applicationProperties;
 
     public List<CmsIssueBookVo> searchIssueBook(Long studentId, Long issueBookId, Long departmentId, Long batchId) {
         IssueBook b = new IssueBook();
@@ -129,6 +133,17 @@ public class IssueBookService {
         List<CmsIssueBookVo> ls = new ArrayList<>();
         for(IssueBook b: list) {
             CmsIssueBookVo vo = CommonUtil.createCopyProperties(b, CmsIssueBookVo.class);
+            String preUrl = this.applicationProperties.getPrefSrvUrl();
+            String stUrl = this.applicationProperties.getStdSrvUrl();
+            String baurl = preUrl+"/api/batch-by-id/"+vo.getBatchId();
+            Batch batch = this.commonService.getObject(baurl,Batch.class);
+//            String deurl = preUrl+"/api/department-by-id/"+vo.getDepartmentId();
+//            Department department = this.commonService.getObject(deurl,Department.class);
+            String stuurl = stUrl+"/api/student-by-id/"+vo.getStudentId();
+            Student student = this.commonService.getObject(stuurl,Student.class);
+//            vo.setDepartment(department);
+            vo.setBatch(batch);
+            vo.setStudent(student);
             convertDatesAndProvideDependencies(b, vo);
             ls.add(vo);
         }
