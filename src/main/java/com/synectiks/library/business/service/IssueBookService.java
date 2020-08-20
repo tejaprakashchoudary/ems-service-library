@@ -187,7 +187,9 @@ public class IssueBookService {
             issueBook.setBranchId(input.getBranchId());
             issueBook.setIssueDate(input.getStrIssueDate() != null ? DateFormatUtil.convertStringToLocalDate(input.getStrIssueDate(), CmsConstants.DATE_FORMAT_dd_MM_yyyy) : null);
             issueBook.setDueDate(input.getStrDueDate() != null ? DateFormatUtil.convertStringToLocalDate(input.getStrDueDate(), CmsConstants.DATE_FORMAT_dd_MM_yyyy) : null);
-            issueBook.setReceivedDate(input.getStrReceivedDate() != null ? DateFormatUtil.convertStringToLocalDate(input.getStrReceivedDate(), CmsConstants.DATE_FORMAT_dd_MM_yyyy) : null);
+            if(input.getId() != null) {
+                issueBook.setReceivedDate(input.getStrReceivedDate() != null ? DateFormatUtil.convertStringToLocalDate(input.getStrReceivedDate(), CmsConstants.DATE_FORMAT_dd_MM_yyyy) : null);
+            }
             issueBook = this.issueBookRepository.save(issueBook);
             vo = CommonUtil.createCopyProperties(issueBook, CmsIssueBookVo.class);
             vo.setStrIssueDate(issueBook.getIssueDate() != null ? DateFormatUtil.changeLocalDateFormat(issueBook.getIssueDate(), CmsConstants.DATE_FORMAT_dd_MM_yyyy) : "");
