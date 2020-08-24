@@ -21,7 +21,6 @@ public class CmsIssueBookVo extends CmsCommonVo implements Serializable {
     private LocalDate issueDate;
     private LocalDate dueDate;
     private LocalDate receivedDate;
-    private  Integer noOfCopiesAvailable;
     private String bookStatus;
     private String strIssueDate;
     private String strDueDate;
@@ -69,14 +68,6 @@ public class CmsIssueBookVo extends CmsCommonVo implements Serializable {
 
     public void setReceivedDate(LocalDate receivedDate) {
         this.receivedDate = receivedDate;
-    }
-
-    public Integer getNoOfCopiesAvailable() {
-        return noOfCopiesAvailable;
-    }
-
-    public void setNoOfCopiesAvailable(Integer noOfCopiesAvailable) {
-        this.noOfCopiesAvailable = noOfCopiesAvailable;
     }
 
     public String getBookStatus() {
@@ -198,7 +189,6 @@ public class CmsIssueBookVo extends CmsCommonVo implements Serializable {
             ", issueDate=" + issueDate +
             ", dueDate=" + dueDate +
             ", receivedDate=" + receivedDate +
-            ", noOfCopiesAvailable=" + noOfCopiesAvailable +
             ", bookStatus='" + bookStatus + '\'' +
             ", strIssueDate='" + strIssueDate + '\'' +
             ", strDueDate='" + strDueDate + '\'' +

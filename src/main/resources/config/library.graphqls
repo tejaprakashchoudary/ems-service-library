@@ -24,7 +24,6 @@ type IssueBook {
          id:Long
          issueDate: Date
          dueDate: Date
-         noOfCopiesAvailable: Int
          bookStatus: String
          receivedDate: Date
          batchId: Long
@@ -41,6 +40,7 @@ type  Book{
     publisher: String
     edition: String
     noOfCopies: Long
+    noOfCopiesAvailable: Long
     isbNo: Long
     departmentId: Long
 
@@ -49,7 +49,6 @@ type CmsIssueBookVo{
      id: Long
     issueDate: Date
     dueDate: Date
-    noOfCopiesAvailable: Int
     bookStatus: String
     receivedDate: Date
     strIssueDate: String
@@ -77,6 +76,7 @@ type CmsBookVo {
      publisher: String
      edition: String
      noOfCopies: Long
+     noOfCopiesAvailable: Long
      isbNo: Long
      departmentId: Long
      department: Department
@@ -97,6 +97,7 @@ input AddBookInput{
     publisher: String
     edition: String
     noOfCopies: Long
+    noOfCopiesAvailable: Long
     isbNo: Long
     departmentId: Long
 }
@@ -115,7 +116,6 @@ input IssueBookListFilterInput {
 
 input AddIssueBookInput{
      id: Long
-    noOfCopiesAvailable: Int
     bookStatus: String
     strIssueDate: String
     strDueDate: String

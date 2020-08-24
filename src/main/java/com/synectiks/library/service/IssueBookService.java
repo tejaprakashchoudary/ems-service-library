@@ -6,22 +6,22 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Service Interface for managing IssueBook.
+ * Service Interface for managing {@link com.synectiks.library.domain.IssueBook}.
  */
 public interface IssueBookService {
 
     /**
      * Save a issueBook.
      *
-     * @param issueBookDTO the entity to save
-     * @return the persisted entity
+     * @param issueBookDTO the entity to save.
+     * @return the persisted entity.
      */
     IssueBookDTO save(IssueBookDTO issueBookDTO);
 
     /**
      * Get all the issueBooks.
      *
-     * @return the list of entities
+     * @return the list of entities.
      */
     List<IssueBookDTO> findAll();
 
@@ -29,15 +29,15 @@ public interface IssueBookService {
     /**
      * Get the "id" issueBook.
      *
-     * @param id the id of the entity
-     * @return the entity
+     * @param id the id of the entity.
+     * @return the entity.
      */
     Optional<IssueBookDTO> findOne(Long id);
 
     /**
      * Delete the "id" issueBook.
      *
-     * @param id the id of the entity
+     * @param id the id of the entity.
      */
     void delete(Long id);
 }

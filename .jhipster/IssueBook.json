@@ -14,10 +14,6 @@
             "fieldType": "LocalDate"
         },
         {
-            "fieldName": "noOfCopiesAvailable",
-            "fieldType": "Integer"
-        },
-        {
             "fieldName": "bookStatus",
             "fieldType": "String"
         },
@@ -56,5 +52,7 @@
     "fluentMethods": true,
     "clientRootFolder": "Library",
     "applications": "*",
-    "microserviceName": "Library"
+    "microserviceName": "Library",
+    "readOnly": false,
+    "embedded": false
 }

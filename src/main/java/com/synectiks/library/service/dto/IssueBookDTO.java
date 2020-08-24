@@ -1,13 +1,13 @@
 package com.synectiks.library.service.dto;
+
 import java.time.LocalDate;
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
- * A DTO for the IssueBook entity.
+ * A DTO for the {@link com.synectiks.library.domain.IssueBook} entity.
  */
 public class IssueBookDTO implements Serializable {
-
+    
     private Long id;
 
     private LocalDate issueDate;
@@ -15,8 +15,6 @@ public class IssueBookDTO implements Serializable {
     private LocalDate dueDate;
 
     private LocalDate receivedDate;
-
-    private Integer noOfCopiesAvailable;
 
     private String bookStatus;
 
@@ -30,7 +28,7 @@ public class IssueBookDTO implements Serializable {
 
 
     private Long bookId;
-
+    
     public Long getId() {
         return id;
     }
@@ -61,14 +59,6 @@ public class IssueBookDTO implements Serializable {
 
     public void setReceivedDate(LocalDate receivedDate) {
         this.receivedDate = receivedDate;
-    }
-
-    public Integer getNoOfCopiesAvailable() {
-        return noOfCopiesAvailable;
-    }
-
-    public void setNoOfCopiesAvailable(Integer noOfCopiesAvailable) {
-        this.noOfCopiesAvailable = noOfCopiesAvailable;
     }
 
     public String getBookStatus() {
@@ -124,22 +114,19 @@ public class IssueBookDTO implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof IssueBookDTO)) {
             return false;
         }
 
-        IssueBookDTO issueBookDTO = (IssueBookDTO) o;
-        if (issueBookDTO.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), issueBookDTO.getId());
+        return id != null && id.equals(((IssueBookDTO) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
+    // prettier-ignore
     @Override
     public String toString() {
         return "IssueBookDTO{" +
@@ -147,13 +134,12 @@ public class IssueBookDTO implements Serializable {
             ", issueDate='" + getIssueDate() + "'" +
             ", dueDate='" + getDueDate() + "'" +
             ", receivedDate='" + getReceivedDate() + "'" +
-            ", noOfCopiesAvailable=" + getNoOfCopiesAvailable() +
             ", bookStatus='" + getBookStatus() + "'" +
             ", studentId=" + getStudentId() +
             ", batchId=" + getBatchId() +
             ", departmentId=" + getDepartmentId() +
             ", branchId=" + getBranchId() +
-            ", book=" + getBookId() +
+            ", bookId=" + getBookId() +
             "}";
     }
 }

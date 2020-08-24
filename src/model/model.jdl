@@ -3,7 +3,6 @@ entity IssueBook{
    issueDate LocalDate
    dueDate LocalDate
    receivedDate LocalDate
-   noOfCopiesAvailable Integer
    bookStatus String
    studentId Long
    batchId Long
@@ -18,6 +17,7 @@ entity Book{
     publisher String
     edition String
     noOfCopies Long
+    noOfCopiesAvailable Long
     isbNo Long
     departmentId Long
     branchId Long

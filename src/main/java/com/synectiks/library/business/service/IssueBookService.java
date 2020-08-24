@@ -177,10 +177,22 @@ public class IssueBookService {
                 logger.debug("Updating existing IssueBook");
                 issueBook = this.issueBookRepository.findById(input.getId()).get();
             }
-            Book lb = this.bookRepository.findById(input.getBookId()).get();
-            issueBook.setBook(lb);
+//            Book lb = this.bookRepository.findById(input.getBookId()).get();
+//            issueBook.setBook(lb);
+            Optional<Book> oe = this.bookRepository.findById(input.getBookId());
+            if(oe.isPresent()) {
+                Book book = oe.get();
+                if("ISSUED".equalsIgnoreCase(input.getBookStatus())){
+                    book.setNoOfCopiesAvailable(book.getNoOfCopiesAvailable()-1);
+                    book = this.bookRepository.save(book);
+                }
+                else if("RECEIVED".equalsIgnoreCase(input.getBookStatus())){
+                    book.setNoOfCopiesAvailable(book.getNoOfCopiesAvailable()+1);
+                    book = this.bookRepository.save(book);
+                }
+                issueBook.setBook(book);
+            }
             issueBook.setBookStatus(input.getBookStatus());
-            issueBook.setNoOfCopiesAvailable(input.getNoOfCopiesAvailable());
             issueBook.setBatchId(input.getBatchId());
             issueBook.setDepartmentId(input.getDepartmentId());
             issueBook.setStudentId(input.getStudentId());

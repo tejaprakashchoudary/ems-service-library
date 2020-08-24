@@ -1,12 +1,12 @@
 package com.synectiks.library.service.dto;
+
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
- * A DTO for the Book entity.
+ * A DTO for the {@link com.synectiks.library.domain.Book} entity.
  */
 public class BookDTO implements Serializable {
-
+    
     private Long id;
 
     private String shelfNo;
@@ -21,13 +21,15 @@ public class BookDTO implements Serializable {
 
     private Long noOfCopies;
 
+    private Long noOfCopiesAvailable;
+
     private Long isbNo;
 
     private Long departmentId;
 
     private Long branchId;
 
-
+    
     public Long getId() {
         return id;
     }
@@ -84,6 +86,14 @@ public class BookDTO implements Serializable {
         this.noOfCopies = noOfCopies;
     }
 
+    public Long getNoOfCopiesAvailable() {
+        return noOfCopiesAvailable;
+    }
+
+    public void setNoOfCopiesAvailable(Long noOfCopiesAvailable) {
+        this.noOfCopiesAvailable = noOfCopiesAvailable;
+    }
+
     public Long getIsbNo() {
         return isbNo;
     }
@@ -113,22 +123,19 @@ public class BookDTO implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof BookDTO)) {
             return false;
         }
 
-        BookDTO bookDTO = (BookDTO) o;
-        if (bookDTO.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), bookDTO.getId());
+        return id != null && id.equals(((BookDTO) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
+    // prettier-ignore
     @Override
     public String toString() {
         return "BookDTO{" +
@@ -139,6 +146,7 @@ public class BookDTO implements Serializable {
             ", publisher='" + getPublisher() + "'" +
             ", edition='" + getEdition() + "'" +
             ", noOfCopies=" + getNoOfCopies() +
+            ", noOfCopiesAvailable=" + getNoOfCopiesAvailable() +
             ", isbNo=" + getIsbNo() +
             ", departmentId=" + getDepartmentId() +
             ", branchId=" + getBranchId() +

@@ -1,13 +1,11 @@
 package com.synectiks.library.domain;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 
 /**
  * A IssueBook.
@@ -17,7 +15,7 @@ import java.util.Objects;
 public class IssueBook implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
@@ -31,9 +29,6 @@ public class IssueBook implements Serializable {
 
     @Column(name = "received_date")
     private LocalDate receivedDate;
-
-    @Column(name = "no_of_copies_available")
-    private Integer noOfCopiesAvailable;
 
     @Column(name = "book_status")
     private String bookStatus;
@@ -51,10 +46,10 @@ public class IssueBook implements Serializable {
     private Long branchId;
 
     @ManyToOne
-    @JsonIgnoreProperties("issueBooks")
+    @JsonIgnoreProperties(value = "issueBooks", allowSetters = true)
     private Book book;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -100,19 +95,6 @@ public class IssueBook implements Serializable {
 
     public void setReceivedDate(LocalDate receivedDate) {
         this.receivedDate = receivedDate;
-    }
-
-    public Integer getNoOfCopiesAvailable() {
-        return noOfCopiesAvailable;
-    }
-
-    public IssueBook noOfCopiesAvailable(Integer noOfCopiesAvailable) {
-        this.noOfCopiesAvailable = noOfCopiesAvailable;
-        return this;
-    }
-
-    public void setNoOfCopiesAvailable(Integer noOfCopiesAvailable) {
-        this.noOfCopiesAvailable = noOfCopiesAvailable;
     }
 
     public String getBookStatus() {
@@ -192,28 +174,25 @@ public class IssueBook implements Serializable {
     public void setBook(Book book) {
         this.book = book;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof IssueBook)) {
             return false;
         }
-        IssueBook issueBook = (IssueBook) o;
-        if (issueBook.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), issueBook.getId());
+        return id != null && id.equals(((IssueBook) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
+    // prettier-ignore
     @Override
     public String toString() {
         return "IssueBook{" +
@@ -221,7 +200,6 @@ public class IssueBook implements Serializable {
             ", issueDate='" + getIssueDate() + "'" +
             ", dueDate='" + getDueDate() + "'" +
             ", receivedDate='" + getReceivedDate() + "'" +
-            ", noOfCopiesAvailable=" + getNoOfCopiesAvailable() +
             ", bookStatus='" + getBookStatus() + "'" +
             ", studentId=" + getStudentId() +
             ", batchId=" + getBatchId() +

@@ -1,11 +1,9 @@
 package com.synectiks.library.domain;
 
 
-
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * A Book.
@@ -15,7 +13,7 @@ import java.util.Objects;
 public class Book implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
@@ -39,6 +37,9 @@ public class Book implements Serializable {
     @Column(name = "no_of_copies")
     private Long noOfCopies;
 
+    @Column(name = "no_of_copies_available")
+    private Long noOfCopiesAvailable;
+
     @Column(name = "isb_no")
     private Long isbNo;
 
@@ -48,7 +49,7 @@ public class Book implements Serializable {
     @Column(name = "branch_id")
     private Long branchId;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -135,6 +136,19 @@ public class Book implements Serializable {
         this.noOfCopies = noOfCopies;
     }
 
+    public Long getNoOfCopiesAvailable() {
+        return noOfCopiesAvailable;
+    }
+
+    public Book noOfCopiesAvailable(Long noOfCopiesAvailable) {
+        this.noOfCopiesAvailable = noOfCopiesAvailable;
+        return this;
+    }
+
+    public void setNoOfCopiesAvailable(Long noOfCopiesAvailable) {
+        this.noOfCopiesAvailable = noOfCopiesAvailable;
+    }
+
     public Long getIsbNo() {
         return isbNo;
     }
@@ -173,28 +187,25 @@ public class Book implements Serializable {
     public void setBranchId(Long branchId) {
         this.branchId = branchId;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Book)) {
             return false;
         }
-        Book book = (Book) o;
-        if (book.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), book.getId());
+        return id != null && id.equals(((Book) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
+    // prettier-ignore
     @Override
     public String toString() {
         return "Book{" +
@@ -205,6 +216,7 @@ public class Book implements Serializable {
             ", publisher='" + getPublisher() + "'" +
             ", edition='" + getEdition() + "'" +
             ", noOfCopies=" + getNoOfCopies() +
+            ", noOfCopiesAvailable=" + getNoOfCopiesAvailable() +
             ", isbNo=" + getIsbNo() +
             ", departmentId=" + getDepartmentId() +
             ", branchId=" + getBranchId() +

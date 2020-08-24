@@ -20,6 +20,7 @@ public class CmsBookVo extends CmsCommonVo implements Serializable {
     private String publisher;
     private String edition;
     private Long noOfCopies;
+    private Long noOfCopiesAvailable;
     private Long isbNo;
     private Long departmentId;
     private Long branchId;
@@ -125,6 +126,14 @@ public class CmsBookVo extends CmsCommonVo implements Serializable {
         this.department = department;
     }
 
+    public Long getNoOfCopiesAvailable() {
+        return noOfCopiesAvailable;
+    }
+
+    public void setNoOfCopiesAvailable(Long noOfCopiesAvailable) {
+        this.noOfCopiesAvailable = noOfCopiesAvailable;
+    }
+
     public List<CmsBookVo> getDataList() {
         return dataList;
     }
@@ -143,6 +152,7 @@ public class CmsBookVo extends CmsCommonVo implements Serializable {
             ", publisher='" + publisher + '\'' +
             ", edition='" + edition + '\'' +
             ", noOfCopies=" + noOfCopies +
+            ", noOfCopiesAvailable=" + noOfCopiesAvailable +
             ", isbNo=" + isbNo +
             ", departmentId=" + departmentId +
             ", branchId=" + branchId +

@@ -149,6 +149,7 @@ public class BookService {
             book.setPublisher(input.getPublisher());
             book.setEdition(input.getEdition());
             book.setNoOfCopies(input.getNoOfCopies());
+            book.setNoOfCopiesAvailable(input.getNoOfCopiesAvailable());
             book.setIsbNo(input.getIsbNo());
             book.setDepartmentId(input.getDepartmentId());
             book = this.bookRepository.save(book);

@@ -17,7 +17,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * Service Implementation for managing IssueBook.
+ * Service Implementation for managing {@link IssueBook}.
  */
 @Service
 @Transactional
@@ -34,12 +34,6 @@ public class IssueBookServiceImpl implements IssueBookService {
         this.issueBookMapper = issueBookMapper;
     }
 
-    /**
-     * Save a issueBook.
-     *
-     * @param issueBookDTO the entity to save
-     * @return the persisted entity
-     */
     @Override
     public IssueBookDTO save(IssueBookDTO issueBookDTO) {
         log.debug("Request to save IssueBook : {}", issueBookDTO);
@@ -48,11 +42,6 @@ public class IssueBookServiceImpl implements IssueBookService {
         return issueBookMapper.toDto(issueBook);
     }
 
-    /**
-     * Get all the issueBooks.
-     *
-     * @return the list of entities
-     */
     @Override
     @Transactional(readOnly = true)
     public List<IssueBookDTO> findAll() {
@@ -63,12 +52,6 @@ public class IssueBookServiceImpl implements IssueBookService {
     }
 
 
-    /**
-     * Get one issueBook by id.
-     *
-     * @param id the id of the entity
-     * @return the entity
-     */
     @Override
     @Transactional(readOnly = true)
     public Optional<IssueBookDTO> findOne(Long id) {
@@ -77,11 +60,6 @@ public class IssueBookServiceImpl implements IssueBookService {
             .map(issueBookMapper::toDto);
     }
 
-    /**
-     * Delete the issueBook by id.
-     *
-     * @param id the id of the entity
-     */
     @Override
     public void delete(Long id) {
         log.debug("Request to delete IssueBook : {}", id);

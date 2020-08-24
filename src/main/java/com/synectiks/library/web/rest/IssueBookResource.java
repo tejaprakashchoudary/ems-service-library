@@ -1,22 +1,24 @@
 package com.synectiks.library.web.rest;
+
 import com.synectiks.library.service.IssueBookService;
 import com.synectiks.library.web.rest.errors.BadRequestAlertException;
-import com.synectiks.library.web.rest.util.HeaderUtil;
 import com.synectiks.library.service.dto.IssueBookDTO;
+
+import com.synectiks.library.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 
 /**
- * REST controller for managing IssueBook.
+ * REST controller for managing {@link com.synectiks.library.domain.IssueBook}.
  */
 @RestController
 @RequestMapping("/api")
@@ -33,11 +35,11 @@ public class IssueBookResource {
     }
 
     /**
-     * POST  /issue-books : Create a new issueBook.
+     * {@code POST  /issue-books} : Create a new issueBook.
      *
-     * @param issueBookDTO the issueBookDTO to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new issueBookDTO, or with status 400 (Bad Request) if the issueBook has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @param issueBookDTO the issueBookDTO to create.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new issueBookDTO, or with status {@code 400 (Bad Request)} if the issueBook has already an ID.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/issue-books")
     public ResponseEntity<IssueBookDTO> createIssueBook(@RequestBody IssueBookDTO issueBookDTO) throws URISyntaxException {
@@ -47,18 +49,18 @@ public class IssueBookResource {
         }
         IssueBookDTO result = issueBookService.save(issueBookDTO);
         return ResponseEntity.created(new URI("/api/issue-books/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert( ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
     /**
-     * PUT  /issue-books : Updates an existing issueBook.
+     * {@code PUT  /issue-books} : Updates an existing issueBook.
      *
-     * @param issueBookDTO the issueBookDTO to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated issueBookDTO,
-     * or with status 400 (Bad Request) if the issueBookDTO is not valid,
-     * or with status 500 (Internal Server Error) if the issueBookDTO couldn't be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @param issueBookDTO the issueBookDTO to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated issueBookDTO,
+     * or with status {@code 400 (Bad Request)} if the issueBookDTO is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the issueBookDTO couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/issue-books")
     public ResponseEntity<IssueBookDTO> updateIssueBook(@RequestBody IssueBookDTO issueBookDTO) throws URISyntaxException {
@@ -68,14 +70,14 @@ public class IssueBookResource {
         }
         IssueBookDTO result = issueBookService.save(issueBookDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, issueBookDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert( ENTITY_NAME, issueBookDTO.getId().toString()))
             .body(result);
     }
 
     /**
-     * GET  /issue-books : get all the issueBooks.
+     * {@code GET  /issue-books} : get all the issueBooks.
      *
-     * @return the ResponseEntity with status 200 (OK) and the list of issueBooks in body
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of issueBooks in body.
      */
     @GetMapping("/issue-books")
     public List<IssueBookDTO> getAllIssueBooks() {
@@ -84,10 +86,10 @@ public class IssueBookResource {
     }
 
     /**
-     * GET  /issue-books/:id : get the "id" issueBook.
+     * {@code GET  /issue-books/:id} : get the "id" issueBook.
      *
-     * @param id the id of the issueBookDTO to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the issueBookDTO, or with status 404 (Not Found)
+     * @param id the id of the issueBookDTO to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the issueBookDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/issue-books/{id}")
     public ResponseEntity<IssueBookDTO> getIssueBook(@PathVariable Long id) {
@@ -97,15 +99,15 @@ public class IssueBookResource {
     }
 
     /**
-     * DELETE  /issue-books/:id : delete the "id" issueBook.
+     * {@code DELETE  /issue-books/:id} : delete the "id" issueBook.
      *
-     * @param id the id of the issueBookDTO to delete
-     * @return the ResponseEntity with status 200 (OK)
+     * @param id the id of the issueBookDTO to delete.
+     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/issue-books/{id}")
     public ResponseEntity<Void> deleteIssueBook(@PathVariable Long id) {
         log.debug("REST request to delete IssueBook : {}", id);
         issueBookService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert( ENTITY_NAME, id.toString())).build();
     }
 }
