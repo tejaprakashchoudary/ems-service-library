@@ -34,6 +34,10 @@
             "fieldType": "Long"
         },
         {
+            "fieldName": "batchId",
+            "fieldType": "Long"
+        },
+        {
             "fieldName": "departmentId",
             "fieldType": "Long"
         },
@@ -52,7 +56,5 @@
     "fluentMethods": true,
     "clientRootFolder": "Library",
     "applications": "*",
-    "microserviceName": "Library",
-    "readOnly": false,
-    "embedded": false
+    "microserviceName": "Library"
 }

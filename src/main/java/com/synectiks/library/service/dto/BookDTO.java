@@ -1,12 +1,12 @@
 package com.synectiks.library.service.dto;
-
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
- * A DTO for the {@link com.synectiks.library.domain.Book} entity.
+ * A DTO for the Book entity.
  */
 public class BookDTO implements Serializable {
-    
+
     private Long id;
 
     private String shelfNo;
@@ -25,11 +25,13 @@ public class BookDTO implements Serializable {
 
     private Long isbNo;
 
+    private Long batchId;
+
     private Long departmentId;
 
     private Long branchId;
 
-    
+
     public Long getId() {
         return id;
     }
@@ -102,6 +104,14 @@ public class BookDTO implements Serializable {
         this.isbNo = isbNo;
     }
 
+    public Long getBatchId() {
+        return batchId;
+    }
+
+    public void setBatchId(Long batchId) {
+        this.batchId = batchId;
+    }
+
     public Long getDepartmentId() {
         return departmentId;
     }
@@ -123,19 +133,22 @@ public class BookDTO implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof BookDTO)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
 
-        return id != null && id.equals(((BookDTO) o).id);
+        BookDTO bookDTO = (BookDTO) o;
+        if (bookDTO.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), bookDTO.getId());
     }
 
     @Override
     public int hashCode() {
-        return 31;
+        return Objects.hashCode(getId());
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
         return "BookDTO{" +
@@ -148,6 +161,7 @@ public class BookDTO implements Serializable {
             ", noOfCopies=" + getNoOfCopies() +
             ", noOfCopiesAvailable=" + getNoOfCopiesAvailable() +
             ", isbNo=" + getIsbNo() +
+            ", batchId=" + getBatchId() +
             ", departmentId=" + getDepartmentId() +
             ", branchId=" + getBranchId() +
             "}";

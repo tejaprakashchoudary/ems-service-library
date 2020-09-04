@@ -19,6 +19,7 @@ entity Book{
     noOfCopies Long
     noOfCopiesAvailable Long
     isbNo Long
+    batchId Long
     departmentId Long
     branchId Long
 }

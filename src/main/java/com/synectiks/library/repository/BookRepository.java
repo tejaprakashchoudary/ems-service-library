@@ -1,9 +1,9 @@
 package com.synectiks.library.repository;
 
 import com.synectiks.library.domain.Book;
-
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
+
 
 /**
  * Spring Data  repository for the Book entity.
@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
+
 }

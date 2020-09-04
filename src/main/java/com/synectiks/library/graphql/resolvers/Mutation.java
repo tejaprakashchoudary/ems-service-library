@@ -96,10 +96,13 @@ public class Mutation implements GraphQLMutationResolver {
             CmsBookVo vo = CommonUtil.createCopyProperties(lb, CmsBookVo.class);
             String url = prefUrl+"/api/department-by-id/"+vo.getDepartmentId();
             Department d = this.commonService.getObject(url, Department.class);
+            url = prefUrl+"/api/batch-by-id/"+vo.getBatchId();
+            Batch b = this.commonService.getObject(url,Batch.class);
             vo.setDepartment(d);
+            vo.setBatch(b);
             ls.add(vo);
         }
-        logger.debug("Total libraries retrieved. "+list.size());
+        logger.debug("Total books retrieved. "+list.size());
         return ls;
     }
 }

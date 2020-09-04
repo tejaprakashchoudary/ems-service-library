@@ -61,8 +61,14 @@ public class BookResourceIntTest {
     private static final Long DEFAULT_NO_OF_COPIES = 1L;
     private static final Long UPDATED_NO_OF_COPIES = 2L;
 
+    private static final Long DEFAULT_NO_OF_COPIES_AVAILABLE = 1L;
+    private static final Long UPDATED_NO_OF_COPIES_AVAILABLE = 2L;
+
     private static final Long DEFAULT_ISB_NO = 1L;
     private static final Long UPDATED_ISB_NO = 2L;
+
+    private static final Long DEFAULT_BATCH_ID = 1L;
+    private static final Long UPDATED_BATCH_ID = 2L;
 
     private static final Long DEFAULT_DEPARTMENT_ID = 1L;
     private static final Long UPDATED_DEPARTMENT_ID = 2L;
@@ -124,7 +130,9 @@ public class BookResourceIntTest {
             .publisher(DEFAULT_PUBLISHER)
             .edition(DEFAULT_EDITION)
             .noOfCopies(DEFAULT_NO_OF_COPIES)
+            .noOfCopiesAvailable(DEFAULT_NO_OF_COPIES_AVAILABLE)
             .isbNo(DEFAULT_ISB_NO)
+            .batchId(DEFAULT_BATCH_ID)
             .departmentId(DEFAULT_DEPARTMENT_ID)
             .branchId(DEFAULT_BRANCH_ID);
         return book;
@@ -157,7 +165,9 @@ public class BookResourceIntTest {
         assertThat(testBook.getPublisher()).isEqualTo(DEFAULT_PUBLISHER);
         assertThat(testBook.getEdition()).isEqualTo(DEFAULT_EDITION);
         assertThat(testBook.getNoOfCopies()).isEqualTo(DEFAULT_NO_OF_COPIES);
+        assertThat(testBook.getNoOfCopiesAvailable()).isEqualTo(DEFAULT_NO_OF_COPIES_AVAILABLE);
         assertThat(testBook.getIsbNo()).isEqualTo(DEFAULT_ISB_NO);
+        assertThat(testBook.getBatchId()).isEqualTo(DEFAULT_BATCH_ID);
         assertThat(testBook.getDepartmentId()).isEqualTo(DEFAULT_DEPARTMENT_ID);
         assertThat(testBook.getBranchId()).isEqualTo(DEFAULT_BRANCH_ID);
     }
@@ -199,7 +209,9 @@ public class BookResourceIntTest {
             .andExpect(jsonPath("$.[*].publisher").value(hasItem(DEFAULT_PUBLISHER.toString())))
             .andExpect(jsonPath("$.[*].edition").value(hasItem(DEFAULT_EDITION.toString())))
             .andExpect(jsonPath("$.[*].noOfCopies").value(hasItem(DEFAULT_NO_OF_COPIES.intValue())))
+            .andExpect(jsonPath("$.[*].noOfCopiesAvailable").value(hasItem(DEFAULT_NO_OF_COPIES_AVAILABLE.intValue())))
             .andExpect(jsonPath("$.[*].isbNo").value(hasItem(DEFAULT_ISB_NO.intValue())))
+            .andExpect(jsonPath("$.[*].batchId").value(hasItem(DEFAULT_BATCH_ID.intValue())))
             .andExpect(jsonPath("$.[*].departmentId").value(hasItem(DEFAULT_DEPARTMENT_ID.intValue())))
             .andExpect(jsonPath("$.[*].branchId").value(hasItem(DEFAULT_BRANCH_ID.intValue())));
     }
@@ -221,7 +233,9 @@ public class BookResourceIntTest {
             .andExpect(jsonPath("$.publisher").value(DEFAULT_PUBLISHER.toString()))
             .andExpect(jsonPath("$.edition").value(DEFAULT_EDITION.toString()))
             .andExpect(jsonPath("$.noOfCopies").value(DEFAULT_NO_OF_COPIES.intValue()))
+            .andExpect(jsonPath("$.noOfCopiesAvailable").value(DEFAULT_NO_OF_COPIES_AVAILABLE.intValue()))
             .andExpect(jsonPath("$.isbNo").value(DEFAULT_ISB_NO.intValue()))
+            .andExpect(jsonPath("$.batchId").value(DEFAULT_BATCH_ID.intValue()))
             .andExpect(jsonPath("$.departmentId").value(DEFAULT_DEPARTMENT_ID.intValue()))
             .andExpect(jsonPath("$.branchId").value(DEFAULT_BRANCH_ID.intValue()));
     }
@@ -253,7 +267,9 @@ public class BookResourceIntTest {
             .publisher(UPDATED_PUBLISHER)
             .edition(UPDATED_EDITION)
             .noOfCopies(UPDATED_NO_OF_COPIES)
+            .noOfCopiesAvailable(UPDATED_NO_OF_COPIES_AVAILABLE)
             .isbNo(UPDATED_ISB_NO)
+            .batchId(UPDATED_BATCH_ID)
             .departmentId(UPDATED_DEPARTMENT_ID)
             .branchId(UPDATED_BRANCH_ID);
         BookDTO bookDTO = bookMapper.toDto(updatedBook);
@@ -273,7 +289,9 @@ public class BookResourceIntTest {
         assertThat(testBook.getPublisher()).isEqualTo(UPDATED_PUBLISHER);
         assertThat(testBook.getEdition()).isEqualTo(UPDATED_EDITION);
         assertThat(testBook.getNoOfCopies()).isEqualTo(UPDATED_NO_OF_COPIES);
+        assertThat(testBook.getNoOfCopiesAvailable()).isEqualTo(UPDATED_NO_OF_COPIES_AVAILABLE);
         assertThat(testBook.getIsbNo()).isEqualTo(UPDATED_ISB_NO);
+        assertThat(testBook.getBatchId()).isEqualTo(UPDATED_BATCH_ID);
         assertThat(testBook.getDepartmentId()).isEqualTo(UPDATED_DEPARTMENT_ID);
         assertThat(testBook.getBranchId()).isEqualTo(UPDATED_BRANCH_ID);
     }

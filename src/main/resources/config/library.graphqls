@@ -42,6 +42,7 @@ type  Book{
     noOfCopies: Long
     noOfCopiesAvailable: Long
     isbNo: Long
+    batchId: Long
     departmentId: Long
 
 }
@@ -79,7 +80,9 @@ type CmsBookVo {
      noOfCopiesAvailable: Long
      isbNo: Long
      departmentId: Long
+     batchId: Long
      department: Department
+     batch: Batch
      exitCode: Long
      exitDescription: String
      dataList: [CmsBookVo]
@@ -87,6 +90,7 @@ type CmsBookVo {
 
 input BookFilterInput {
     bookId: String
+    batchId: String
     departmentId: String
 }
 input AddBookInput{
@@ -99,6 +103,7 @@ input AddBookInput{
     noOfCopies: Long
     noOfCopiesAvailable: Long
     isbNo: Long
+    batchId: Long
     departmentId: Long
 }
 

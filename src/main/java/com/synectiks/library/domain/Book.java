@@ -1,9 +1,11 @@
 package com.synectiks.library.domain;
 
 
+
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * A Book.
@@ -13,7 +15,7 @@ import java.io.Serializable;
 public class Book implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
@@ -43,13 +45,16 @@ public class Book implements Serializable {
     @Column(name = "isb_no")
     private Long isbNo;
 
+    @Column(name = "batch_id")
+    private Long batchId;
+
     @Column(name = "department_id")
     private Long departmentId;
 
     @Column(name = "branch_id")
     private Long branchId;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -162,6 +167,19 @@ public class Book implements Serializable {
         this.isbNo = isbNo;
     }
 
+    public Long getBatchId() {
+        return batchId;
+    }
+
+    public Book batchId(Long batchId) {
+        this.batchId = batchId;
+        return this;
+    }
+
+    public void setBatchId(Long batchId) {
+        this.batchId = batchId;
+    }
+
     public Long getDepartmentId() {
         return departmentId;
     }
@@ -187,25 +205,28 @@ public class Book implements Serializable {
     public void setBranchId(Long branchId) {
         this.branchId = branchId;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Book)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        return id != null && id.equals(((Book) o).id);
+        Book book = (Book) o;
+        if (book.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), book.getId());
     }
 
     @Override
     public int hashCode() {
-        return 31;
+        return Objects.hashCode(getId());
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
         return "Book{" +
@@ -218,6 +239,7 @@ public class Book implements Serializable {
             ", noOfCopies=" + getNoOfCopies() +
             ", noOfCopiesAvailable=" + getNoOfCopiesAvailable() +
             ", isbNo=" + getIsbNo() +
+            ", batchId=" + getBatchId() +
             ", departmentId=" + getDepartmentId() +
             ", branchId=" + getBranchId() +
             "}";

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.synectiks.library.domain.Batch;
 import com.synectiks.library.domain.Branch;
 import com.synectiks.library.domain.Department;
 
@@ -22,8 +23,10 @@ public class CmsBookVo extends CmsCommonVo implements Serializable {
     private Long noOfCopies;
     private Long noOfCopiesAvailable;
     private Long isbNo;
+    private Long batchId;
     private Long departmentId;
     private Long branchId;
+    private Batch batch;
     private Branch branch;
     private Department department;
     @JsonSerialize(using = LocalDateSerializer.class)
@@ -142,6 +145,22 @@ public class CmsBookVo extends CmsCommonVo implements Serializable {
         this.dataList = dataList;
     }
 
+    public Long getBatchId() {
+        return batchId;
+    }
+
+    public void setBatchId(Long batchId) {
+        this.batchId = batchId;
+    }
+
+    public Batch getBatch() {
+        return batch;
+    }
+
+    public void setBatch(Batch batch) {
+        this.batch = batch;
+    }
+
     @Override
     public String toString() {
         return "CmsBookVo{" +
@@ -154,8 +173,10 @@ public class CmsBookVo extends CmsCommonVo implements Serializable {
             ", noOfCopies=" + noOfCopies +
             ", noOfCopiesAvailable=" + noOfCopiesAvailable +
             ", isbNo=" + isbNo +
+            ", batchId=" + batchId +
             ", departmentId=" + departmentId +
             ", branchId=" + branchId +
+            ", batch=" + batch +
             ", branch=" + branch +
             ", department=" + department +
             ", dataList=" + dataList +

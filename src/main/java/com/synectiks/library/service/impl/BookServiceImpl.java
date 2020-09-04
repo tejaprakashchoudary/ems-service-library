@@ -17,7 +17,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * Service Implementation for managing {@link Book}.
+ * Service Implementation for managing Book.
  */
 @Service
 @Transactional
@@ -34,6 +34,12 @@ public class BookServiceImpl implements BookService {
         this.bookMapper = bookMapper;
     }
 
+    /**
+     * Save a book.
+     *
+     * @param bookDTO the entity to save
+     * @return the persisted entity
+     */
     @Override
     public BookDTO save(BookDTO bookDTO) {
         log.debug("Request to save Book : {}", bookDTO);
@@ -42,6 +48,11 @@ public class BookServiceImpl implements BookService {
         return bookMapper.toDto(book);
     }
 
+    /**
+     * Get all the books.
+     *
+     * @return the list of entities
+     */
     @Override
     @Transactional(readOnly = true)
     public List<BookDTO> findAll() {
@@ -52,6 +63,12 @@ public class BookServiceImpl implements BookService {
     }
 
 
+    /**
+     * Get one book by id.
+     *
+     * @param id the id of the entity
+     * @return the entity
+     */
     @Override
     @Transactional(readOnly = true)
     public Optional<BookDTO> findOne(Long id) {
@@ -60,6 +77,11 @@ public class BookServiceImpl implements BookService {
             .map(bookMapper::toDto);
     }
 
+    /**
+     * Delete the book by id.
+     *
+     * @param id the id of the entity
+     */
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Book : {}", id);
