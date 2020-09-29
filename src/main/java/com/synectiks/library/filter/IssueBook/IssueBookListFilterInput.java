@@ -2,7 +2,7 @@ package com.synectiks.library.filter.IssueBook;
 
 public class IssueBookListFilterInput {
     private String studentId;
-    private String issueBookId;
+    private String bookId;
     private String departmentId;
     private String batchId;
 
@@ -14,12 +14,12 @@ public class IssueBookListFilterInput {
         this.studentId = studentId;
     }
 
-    public String getIssueBookId() {
-        return issueBookId;
+    public String getBookId() {
+        return bookId;
     }
 
-    public void setIssueBookId(String issueBookId) {
-        this.issueBookId = issueBookId;
+    public void setBookId(String bookId) {
+        this.bookId = bookId;
     }
 
     public String getDepartmentId() {

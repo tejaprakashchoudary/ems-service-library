@@ -18,8 +18,14 @@ public class CmsIssueBookVo extends CmsCommonVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate issueDate;
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate dueDate;
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate receivedDate;
     private String bookStatus;
     private String strIssueDate;
@@ -34,8 +40,6 @@ public class CmsIssueBookVo extends CmsCommonVo implements Serializable {
     private Department department;
     private Batch batch;
     private Student student;
-    @JsonSerialize(using = LocalDateSerializer.class)
-    @JsonDeserialize(using = LocalDateDeserializer.class)
     private List<CmsIssueBookVo> dataList = new ArrayList<>();
 
     public Long getId() {

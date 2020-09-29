@@ -38,13 +38,13 @@ public class IssueBookService {
     @Autowired
     private ApplicationProperties applicationProperties;
 
-    public List<CmsIssueBookVo> searchIssueBook(Long studentId, Long issueBookId, Long departmentId, Long batchId) {
+    public List<CmsIssueBookVo> searchIssueBook(Long studentId, Long bookId, Long departmentId, Long batchId) {
         IssueBook b = new IssueBook();
         if (studentId != null) {
             b.setStudentId(studentId);
         }
-        if (issueBookId != null) {
-            b.setId(issueBookId);
+        if (bookId != null) {
+            b.setId(bookId);
         }
         if (departmentId != null) {
             b.setDepartmentId(departmentId);
@@ -76,9 +76,9 @@ public class IssueBookService {
         if (!CommonUtil.isNullOrEmpty(filter.getStudentId())) {
             b.setStudentId(Long.parseLong(filter.getStudentId()));
         }
-        if (!CommonUtil.isNullOrEmpty(filter.getIssueBookId())) {
+        if (!CommonUtil.isNullOrEmpty(filter.getBookId())) {
             if (b != null) {
-                b.setId(Long.valueOf(filter.getIssueBookId()));
+                b.setId(Long.valueOf(filter.getBookId()));
             }
         }
         if (!CommonUtil.isNullOrEmpty(filter.getDepartmentId())) {

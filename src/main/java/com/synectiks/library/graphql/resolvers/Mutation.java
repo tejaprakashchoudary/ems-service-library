@@ -7,6 +7,7 @@ import com.synectiks.library.business.service.IssueBookService;
 import com.synectiks.library.config.ApplicationProperties;
 import com.synectiks.library.constant.CmsConstants;
 import com.synectiks.library.domain.Batch;
+import com.synectiks.library.domain.Book;
 import com.synectiks.library.domain.Department;
 import com.synectiks.library.domain.Student;
 import com.synectiks.library.domain.vo.CmsBookVo;
@@ -30,6 +31,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class Mutation implements GraphQLMutationResolver {
@@ -57,6 +59,7 @@ public class Mutation implements GraphQLMutationResolver {
         CmsIssueBookVo vo = this.issueBookService.addIssueBook(cmsIssueBookVo);
         return new AddIssueBookPayload(vo);
     }
+
     public List<CmsIssueBookVo> getIssueBookList(IssueBookListFilterInput filter) throws Exception {
         List<CmsIssueBookVo> list = this.issueBookFilterProcessor.searchIssueBook(filter);
         List<CmsIssueBookVo> ls = new ArrayList<>();
@@ -84,6 +87,7 @@ public class Mutation implements GraphQLMutationResolver {
         logger.debug("Total issueBooks retrieved. "+list.size());
         return ls;
     }
+
     public AddBookPayload addBook(AddBookInput cmsBookVo) {
         CmsBookVo vo = this.bookService.addBook(cmsBookVo);
         return new AddBookPayload(vo);

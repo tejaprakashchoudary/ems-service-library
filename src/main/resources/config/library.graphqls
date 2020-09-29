@@ -114,7 +114,7 @@ type AddBookPayload {
 
 input IssueBookListFilterInput {
    studentId:String
-   issueBookId:String
+   bookId:String
    departmentId: String
    batchId: String
 }

@@ -11,8 +11,8 @@ import java.util.List;
 public class IssueBookFilterProcessor {
     @Autowired
     private IssueBookService issueBookService;
-    public List<CmsIssueBookVo> searchIssueBook(Long issueBookId, Long studentId, Long departmentId, Long batchId) {
-        return issueBookService.searchIssueBook(issueBookId,studentId,departmentId,batchId);
+    public List<CmsIssueBookVo> searchIssueBook(Long bookId, Long studentId, Long departmentId, Long batchId) {
+        return issueBookService.searchIssueBook(bookId,studentId,departmentId,batchId);
     }
     public List<CmsIssueBookVo> searchIssueBook(IssueBookListFilterInput filter){
         return issueBookService.searchIssueBook(filter);
