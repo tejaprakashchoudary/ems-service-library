@@ -152,6 +152,8 @@ public class BookService {
             book.setNoOfCopiesAvailable(input.getNoOfCopiesAvailable());
             book.setIsbNo(input.getIsbNo());
             book.setDepartmentId(input.getDepartmentId());
+            book.setBatchId(input.getBatchId());
+            book.setBranchId(input.getBranchId());
             book = this.bookRepository.save(book);
             vo = CommonUtil.createCopyProperties(book, CmsBookVo.class);
             vo.setCreatedOn(null);

@@ -30,6 +30,7 @@ type IssueBook {
          departmentId: Long
      	 studentId: Long
      	 bookId: Long
+     	 branchId: Long
  }
 
 type  Book{
@@ -44,7 +45,7 @@ type  Book{
     isbNo: Long
     batchId: Long
     departmentId: Long
-
+    branchId: Long
 }
 type CmsIssueBookVo{
      id: Long
@@ -81,6 +82,7 @@ type CmsBookVo {
      isbNo: Long
      departmentId: Long
      batchId: Long
+     branchId: Long
      department: Department
      batch: Batch
      exitCode: Long
@@ -105,6 +107,7 @@ input AddBookInput{
     isbNo: Long
     batchId: Long
     departmentId: Long
+    branchId: Long
 }
 
 type AddBookPayload {
