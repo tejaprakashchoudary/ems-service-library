@@ -131,18 +131,21 @@ public class IssueBookService {
     }
     private List<CmsIssueBookVo> changeIssueBookToCmsIssueBookList(List<IssueBook> list){
         List<CmsIssueBookVo> ls = new ArrayList<>();
+        String prefUrl = applicationProperties.getPrefSrvUrl();
         for(IssueBook b: list) {
             CmsIssueBookVo vo = CommonUtil.createCopyProperties(b, CmsIssueBookVo.class);
             String preUrl = this.applicationProperties.getPrefSrvUrl();
             String stUrl = this.applicationProperties.getStdSrvUrl();
-            String baurl = preUrl+"/api/batch-by-id/"+vo.getBatchId();
-            Batch batch = this.commonService.getObject(baurl,Batch.class);
-//            String deurl = preUrl+"/api/department-by-id/"+vo.getDepartmentId();
-//            Department department = this.commonService.getObject(deurl,Department.class);
+//            Book lb = this.bookRepository.findById(input.getBookId()).get();
+//            issueBook.setBook(lb);
+            String baurl = prefUrl+"/api/batch-by-id/"+vo.getBatchId();
+            Batch batch = this.commonService.getObject(baurl, Batch.class);
+            vo.setBatch(batch);
+            String deurl = prefUrl+"/api/department-by-id/"+vo.getDepartmentId();
+            Department d = this.commonService.getObject(deurl, Department.class);
+            vo.setDepartment(d);
             String stuurl = stUrl+"/api/student-by-id/"+vo.getStudentId();
             Student student = this.commonService.getObject(stuurl,Student.class);
-//            vo.setDepartment(department);
-            vo.setBatch(batch);
             vo.setStudent(student);
             convertDatesAndProvideDependencies(b, vo);
             ls.add(vo);
@@ -177,8 +180,8 @@ public class IssueBookService {
                 logger.debug("Updating existing IssueBook");
                 issueBook = this.issueBookRepository.findById(input.getId()).get();
             }
-//            Book lb = this.bookRepository.findById(input.getBookId()).get();
-//            issueBook.setBook(lb);
+            Book lb = this.bookRepository.findById(input.getBookId()).get();
+            issueBook.setBook(lb);
             Optional<Book> oe = this.bookRepository.findById(input.getBookId());
             if(oe.isPresent()) {
                 Book book = oe.get();

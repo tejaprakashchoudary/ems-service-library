@@ -112,8 +112,12 @@ public class BookService {
 
     private List<CmsBookVo> changeBookToCmsBookList(List<Book> list) {
         List<CmsBookVo> ls = new ArrayList<>();
+        String prefUrl = applicationProperties.getPrefSrvUrl();
         for (Book bk : list) {
             CmsBookVo vo = CommonUtil.createCopyProperties(bk, CmsBookVo.class);
+            String deurl = prefUrl+"/api/department-by-id/"+vo.getDepartmentId();
+            Department d = this.commonService.getObject(deurl, Department.class);
+            vo.setDepartment(d);
             ls.add(vo);
         }
         return ls;
