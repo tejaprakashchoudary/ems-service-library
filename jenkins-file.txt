@@ -1,0 +1,125 @@
+pipeline {
+  
+    agent any
+    stages {
+        stage('WSClean') {
+            steps { 
+                step([$class:'WsCleanup'])
+            }
+        } 
+        stage('Checkout') {
+            steps { 
+                script {
+                    try {
+                        git url: 'https://github.com/synectiks-ems/ems-service-library.git'
+                    } catch (Exception e) {
+                        currentBuild.result = "FAILURE"
+                        step([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'grafana'])
+                    }
+                }
+            }
+        }         
+        stage('HashCalc') {
+            steps
+            {
+                script 
+                {
+                    try {
+                            // calculate GIT lastest commit short-hash
+                            gitCommitHash = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+                            shortCommitHash = gitCommitHash.take(7)
+                            // calculate a sample version tag
+                            VERSION = shortCommitHash
+                            // set the build display name
+                            currentBuild.displayName = "#${BUILD_ID}-${VERSION}"
+                    } catch (Exception e) {
+                        currentBuild.result = "FAILURE"
+                        step([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'grafana'])
+                        throw e
+                    }
+                }
+            }
+        }
+        stage('build') {
+            steps { 
+                script {
+                    try {
+                            sh "make binary"
+                    } catch (Exception e) {
+                        currentBuild.result = "FAILURE"
+                        step([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'grafana'])
+                        throw e
+                    }
+                }
+            }
+        } 
+        stage('PreQualityChecks') {
+            parallel {
+                stage('UnitTests') {
+                    steps {
+                        script {
+                            try {
+                                     echo "To Do implement this"
+                                    //sh "make test"
+                                   // sh "'${mvnHome}/bin/mvn' surefire-report:report"
+                                    // archive "target/**/*"
+                                    //junit 'target/surefire-reports/*.xml'
+                                    //publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'target/site', reportFiles: 'surefire-report.html', reportName: 'Unit Reports'])
+                            } catch (Exception e) {
+                                currentBuild.result = "FAILURE"
+                                step([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'grafana'])
+                                throw e
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+        
+        stage('CreateImage') {
+            steps { 
+                script {
+                    try {
+                            sh "make image"
+                    } catch (Exception e) {
+                        currentBuild.result = "FAILURE"
+                        step([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'grafana'])
+                        throw e
+                    }
+                }
+            }
+        } 
+        stage('LocalTest') {
+            steps { 
+                script {
+                    try {
+                            echo "To Do implement this"
+                    } catch (Exception e) {
+                        currentBuild.result = "FAILURE"
+                        step([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'grafana'])
+                        throw e
+                    }
+                }
+            }
+        }
+        stage('PublishImage') {
+            steps {
+                script { 
+                        try {
+                                // withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'synectiks-dev']]) {
+                                        //sh("eval \$(aws ecr get-login --no-include-email --region us-east-1 | sed 's|https://||')")
+                                        sh 'docker login -u papu -p jaya8668'
+                                        sh "make publish"
+                            // }                           
+                        } catch (Exception e) {
+                        currentBuild.result = "FAILURE"
+                        step([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'grafana'])
+                        throw e
+                    }
+                }
+            }
+        }
+        
+    }
+}
